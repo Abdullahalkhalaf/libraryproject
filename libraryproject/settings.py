@@ -118,3 +118,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+import os 
+STATIC_URL = 'static/' # هذا السطر يكون موجود غالباً 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "apps/static")] # هذا السطر الذي يربط المجلد 
