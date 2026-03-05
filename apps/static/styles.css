@@ -1,0 +1,23 @@
+/* تنسيق شريط التنقل العلوي */
+.topnav {
+    background-color: #eeeeee;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* تنسيق الروابط داخل الشريط */
+.topnav a {
+    float: left;
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    margin-right: 25px;
+}
+
+/* لون الرابط النشط (الصفحة اللي أنت فيها حالياً) */
+.topnav a.active {
+    color: #008CBA;
+}
