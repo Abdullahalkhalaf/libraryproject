@@ -1,0 +1,86 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} Tables {% endblock title %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+<div style="text-align: center;">
+
+    <div style="margin-bottom: 20px;">
+        
+    </div>
+
+    <h2>Table 1: Table of Fruits and Their Prices</h2>
+    <p>The following table:</p>
+    <table class="custom-table">
+        <tr>
+            <th>Fruit</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>Apple</td>
+            <td>$0.25</td>
+        </tr>
+        <tr>
+            <td>Orange</td>
+            <td>$0.50</td>
+        </tr>
+        <tr>
+            <td>Banana</td>
+            <td>$1.00</td>
+        </tr>
+        <tr>
+            <td>Pineapple</td>
+            <td>$2.00</td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <th>$3.75</th>
+        </tr>
+    </table>
+
+    <br>
+
+    <h2>Table 2: A more complex sample table</h2>
+    <p>The following table:</p>
+    <table class="custom-table">
+        <tr>
+            <th></th>
+            <th colspan="4">Camelid comparison <br> Approximate as of 6/2011</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th># of humps</th>
+            <th>Indigenous region</th>
+            <th>Spits?</th>
+            <th>Produces wool?</th>
+        </tr>
+        <tr>
+            <th>Dromedary</th>
+            <td>1</td>
+            <td>Arabian Peninsula</td>
+            <td>Yes</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <th>Camels (bactrian)</th>
+            <td>2</td>
+            <td>Africa/Asia</td>
+            <td>Yes</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <th>Llamas</th>
+            <td>1</td>
+            <td>Andes Mountains</td>
+            <td>Yes</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+</div>
+{% endblock content %}

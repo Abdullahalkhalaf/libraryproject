@@ -15,3 +15,15 @@ def viewbook(request, bookId):
 # دالة عن المكتبة
 def aboutus(request):
     return render(request, 'bookmodule/aboutus.html') 
+
+def links_page(request):
+    return render(request, 'bookmodule/links.html')
+
+def formatting_page(request):
+    return render(request, 'bookmodule/formatting.html')
+
+def listing_page(request):
+    return render(request, 'bookmodule/listing.html')
+
+def tables_page(request):
+    return render(request, 'bookmodule/tables.html')

@@ -1,0 +1,39 @@
+.qu-link {
+    display: block;
+    text-align: center;
+    padding: 15px;
+    background-color: rgb(35, 204, 100); /* خلفية بيضاء */
+    color: blue; /* نص أزرق */
+    text-decoration: none;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.qu-link:hover {
+    background-color: #635a5a; /* خلفية رصاصية فاتحة جداً عند التمرير */
+    text-decoration: underline; /* إضافة خط تحت النص */
+}
+
+/* Task 2: Styling the h1 tag */
+h1.format-title {
+    background-color: #c3c5c7; /* لون خلفية رمادي فاتح */
+    color: black; /* لون النص الأساسي */
+    text-align: left; /* محاذاة لليسار */
+    border: none; /* إزالة الخط السفلي */
+    font-weight: bold;
+}
+
+ /* Task 4: Tables styling  */
+table.custom-table {
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    margin-left: auto;  /* تسحب الجدول للنص من اليسار */
+    margin-right: auto; /* تسحب الجدول للنص من اليمين */
+}
+
+table.custom-table th, table.custom-table td {
+    border: 1px solid black;
+    padding: 5px 15px; 
+    text-align: center; /* المحاذاة بالنص داخل الخلايا */
+}
