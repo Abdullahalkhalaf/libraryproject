@@ -1,0 +1,15 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Books Statistics {% endblock title %}
+
+{% block content %}
+    <h2>Books Statistics (Lab 8 - Task 5)</h2>
+    <hr>
+    <ul>
+        <li><strong>Total Number of Books:</strong> {{ stats.total_books }}</li>
+        <li><strong>Total Price of All Books:</strong> ${{ stats.total_price }}</li>
+        <li><strong>Average Price:</strong> ${{ stats.avg_price }}</li>
+        <li><strong>Maximum Price:</strong> ${{ stats.max_price }}</li>
+        <li><strong>Minimum Price:</strong> ${{ stats.min_price }}</li>
+    </ul>
+{% endblock content %}

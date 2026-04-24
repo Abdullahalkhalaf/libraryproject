@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.db.models import Q, Count, Sum, Avg, Max, Min
+from .models import Book
+from .models import Book, Address, Student
 
 # دالة الصفحة الرئيسية
 def index(request):
@@ -70,3 +73,40 @@ def complex_query(request):
         return render(request, 'bookmodule/bookList.html', {'books': mybooks})
     else:
         return render(request, 'bookmodule/index.html')
+    
+    #Lab 8 Tasks 
+
+# Task 1: الكتب اللي سعرها 80 أو أقل
+def task1(request):
+    books = Book.objects.filter(Q(price__lte=80))
+    return render(request, 'bookmodule/bookList.html', {'books': books})
+
+# Task 2: الكتب اللي إصدارها أعلى من 3، واسمها أو مؤلفها فيه حرفين 'qu'
+def task2(request):
+    books = Book.objects.filter(Q(edition__gt=3) & (Q(title__icontains='qu') | Q(author__icontains='qu')))
+    return render(request, 'bookmodule/bookList.html', {'books': books})
+
+# Task 3: عكس Task 2 (إصدارها 3 أو أقل، ولا فيها 'qu')
+def task3(request):
+    books = Book.objects.filter(~Q(edition__gt=3) & ~(Q(title__icontains='qu') | Q(author__icontains='qu')))
+    return render(request, 'bookmodule/bookList.html', {'books': books})
+
+# Task 4: ترتيب الكتب أبجدياً حسب العنوان
+def task4(request):
+    books = Book.objects.all().order_by('title')
+    return render(request, 'bookmodule/bookList.html', {'books': books})
+
+# Task 5: إحصائيات الكتب (المجموع، السعر الإجمالي، المتوسط، أعلى وأقل سعر)
+def task5(request):
+    stats = Book.objects.aggregate(
+        total_books=Count('id'),
+        total_price=Sum('price'),
+        avg_price=Avg('price'),
+        max_price=Max('price'),
+        min_price=Min('price')
+    )
+    return render(request, 'bookmodule/task5.html', {'stats': stats})
+
+def task7(request):
+    cities = Address.objects.annotate(student_count=Count('student'))
+    return render(request, 'bookmodule/task7.html', {'cities': cities})
