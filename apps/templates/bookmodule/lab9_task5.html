@@ -1,0 +1,12 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+    <h2>Task 5: Highly Rated Books Count</h2>
+    <hr>
+    <ul>
+        {% for pub in publishers %}
+            <li><strong>{{ pub.name }}</strong> - Highly Rated Books Count: {{ pub.highly_rated_count }}</li>
+        {% empty %}
+            <li>No publishers found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

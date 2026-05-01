@@ -1,0 +1,12 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+    <h2>Task 3: Oldest Book per Publisher</h2>
+    <hr>
+    <ul>
+        {% for pub in publishers %}
+            <li><strong>{{ pub.name }}</strong> - Oldest Book Date: {{ pub.oldest_book|date:"Y-m-d"|default:"No books" }}</li>
+        {% empty %}
+            <li>No publishers found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

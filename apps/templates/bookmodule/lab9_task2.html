@@ -1,0 +1,12 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+    <h2>Task 2: Publishers Total Stock</h2>
+    <hr>
+    <ul>
+        {% for pub in publishers %}
+            <li><strong>{{ pub.name }}</strong> - Total Books in Stock: {{ pub.total_stock|default:0 }}</li>
+        {% empty %}
+            <li>No publishers found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

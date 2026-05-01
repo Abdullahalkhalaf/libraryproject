@@ -1,0 +1,17 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+    <h2>Task 4: Publisher Price Stats</h2>
+    <hr>
+    <ul>
+        {% for pub in publishers %}
+            <li>
+                <strong>{{ pub.name }}</strong> - 
+                Avg Price: ${{ pub.avg_price|floatformat:2|default:"0.00" }}, 
+                Min Price: ${{ pub.min_price|default:"0" }}, 
+                Max Price: ${{ pub.max_price|default:"0" }}
+            </li>
+        {% empty %}
+            <li>No publishers found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

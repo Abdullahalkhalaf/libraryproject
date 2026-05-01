@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q, Count, Sum, Avg, Max, Min
 from .models import Book
-from .models import Book, Address, Student
+from .models import Book, Publisher, Author
 
 # دالة الصفحة الرئيسية
 def index(request):
@@ -110,3 +110,48 @@ def task5(request):
 def task7(request):
     cities = Address.objects.annotate(student_count=Count('student'))
     return render(request, 'bookmodule/task7.html', {'cities': cities})
+
+from django.shortcuts import render
+from django.db.models import Sum, Count, Min, Max, Avg, Q
+from .models import Book, Publisher
+
+# Task 1: نسبة توفر الكتاب من الإجمالي
+def task1(request):
+    books = Book.objects.all()
+    total_quantity = Book.objects.aggregate(total=Sum('quantity'))['total'] or 1 # تفادي القسمة على صفر
+    for book in books:
+        book.percentage = round((book.quantity / total_quantity) * 100, 2) # transient field[cite: 2]
+    return render(request, 'bookmodule/lab9_task1.html', {'books': books})
+
+# Task 2: الناشرين مع إجمالي المخزون[cite: 2]
+def task2(request):
+    publishers = Publisher.objects.annotate(total_stock=Sum('book__quantity'))
+    return render(request, 'bookmodule/lab9_task2.html', {'publishers': publishers})
+
+# Task 3: أقدم كتاب لكل ناشر[cite: 2]
+def task3(request):
+    publishers = Publisher.objects.annotate(oldest_book=Min('book__pubdate'))
+    return render(request, 'bookmodule/lab9_task3.html', {'publishers': publishers})
+
+# Task 4: حساب متوسط وأقل وأعلى سعر لكل ناشر[cite: 2]
+def task4(request):
+    publishers = Publisher.objects.annotate(
+        avg_price=Avg('book__price'),
+        min_price=Min('book__price'),
+        max_price=Max('book__price')
+    )
+    return render(request, 'bookmodule/lab9_task4.html', {'publishers': publishers})
+
+# Task 5: عدد الكتب ذات التقييم العالي لكل ناشر[cite: 2]
+def task5(request):
+    publishers = Publisher.objects.annotate(
+        highly_rated_count=Count('book', filter=Q(book__rating__gte=4))
+    )
+    return render(request, 'bookmodule/lab9_task5.html', {'publishers': publishers})
+
+# Task 6: تصفية الكتب حسب السعر والكمية لكل ناشر[cite: 2]
+def task6(request):
+    publishers = Publisher.objects.annotate(
+        filtered_books_count=Count('book', filter=Q(book__price__gt=50, book__quantity__gte=1, book__quantity__lt=5))
+    )
+    return render(request, 'bookmodule/lab9_task6.html', {'publishers': publishers})
